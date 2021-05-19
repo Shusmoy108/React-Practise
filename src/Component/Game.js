@@ -1,5 +1,7 @@
 
 import{Component} from "react";
+import { useDispatch } from "react-redux";
+import { decrement, increment } from "../Redux/actions";
 import Board from "./Board";
 class Game extends Component {
     constructor(props) {
@@ -40,6 +42,7 @@ class Game extends Component {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
+    //const dispatch= useDispatch();
     const moves = history.map((step, move) => {
         const desc = move ?
           'Go to move #' + move :
@@ -56,6 +59,7 @@ class Game extends Component {
     } else {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
     }
+    
       return (
         <div className="game">
           <div className="game-board">
@@ -63,8 +67,9 @@ class Game extends Component {
             onClick={(i) => this.handleClick(i)}/>
           </div>
           <div className="game-info">
-            <div>{status}</div>
+            <div>{status} </div>
             <ol>{moves}</ol>
+            <div><Button></Button></div>
           </div>
         </div>
       );
@@ -91,3 +96,29 @@ class Game extends Component {
     }
     return null;
   }
+
+  function Button() {
+    //const name= useSelector(selectRestoMenu)
+    //console.log(name);
+    const dispatch= useDispatch();
+      return (
+        <div>
+<button className="square" onClick={()=> {
+          console.log("Ff")
+          dispatch(increment())
+        }
+        }>
+          +
+        </button>
+        <div></div>
+        <button className="square" onClick={()=> {
+          console.log("pp")
+          dispatch(decrement())
+        }
+        }>
+          -
+        </button>
+        </div>
+        
+      );
+    }

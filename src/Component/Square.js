@@ -1,11 +1,12 @@
 import {useSelector} from 'react-redux';
 import { selectRestoMenu } from "../Redux/restoSlice";
 function Square(props) {
-  const name= useSelector(selectRestoMenu)
-  console.log(name);
+  //const name= useSelector(selectRestoMenu)
+  //console.log(name);
+  const counter= useSelector(state=>state);
     return (
       <button className="square" onClick={props.onClick}>
-        {props.value}
+        {counter}
       </button>
     );
   }
